@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Free Trial - Darul Taleem Quran Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="trial-page">
+    <header id="main-header">
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html"><img src="DarulTaleemQuranAcademy Logo.png" alt="Logo"></a>
+            </div>
+            <div class="header-right">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="ur">UR</button>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                    <li><a href="index.html#focus" data-i18n="nav_focus">Our Focus</a></li>
+                    <li><a href="how-it-works.html" data-i18n="nav_how_it_works">How it Works</a></li>
+                    <li><a href="curriculum.html" data-i18n="nav_curriculum">Curriculum</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="trial-hero reveal">
+            <h1 data-i18n="trial_title">Book a Free Trial Class</h1>
+            <p data-i18n="trial_subtitle">Start your child's Quran learning journey today.</p>
+        </section>
+
+        <section class="trial-content-split reveal">
+            <!-- Left side: Schedule / Details -->
+            <div class="trial-details">
+                <h2 data-i18n="structure_title" class="details-heading">Class Schedule & Details</h2>
+
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <div class="schedule-icon">⏱️</div>
+                        <h3 data-i18n="struct_1_title">30 Minute Classes</h3>
+                        <p data-i18n="struct_1_desc">Optimal duration for young learners' focus.</p>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-icon">📅</div>
+                        <h3 data-i18n="struct_2_title">5 Days per Week</h3>
+                        <p data-i18n="struct_2_desc">Consistent practice for steady progress.</p>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-icon">👤</div>
+                        <h3 data-i18n="struct_3_title">One-to-One Personalized</h3>
+                        <p data-i18n="struct_3_desc">Individual attention tailored to the student.</p>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-icon">💻</div>
+                        <h3 data-i18n="struct_4_title">Zoom / Google Meet</h3>
+                        <p data-i18n="struct_4_desc">Interactive online classes via popular platforms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side: Form -->
+            <div class="trial-form-container">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="custom-trial-form">
+                    <div class="form-group">
+                        <label for="studentName" data-i18n="form_student_name">Student Name</label>
+                        <input type="text" id="studentName" name="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentName" data-i18n="form_parent_name">Parent Name</label>
+                        <input type="text" id="parentName" name="parentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentAge" data-i18n="form_age">Student's Age</label>
+                        <input type="number" id="studentAge" name="studentAge" required min="3" max="99">
+                    </div>
+                    <div class="form-group">
+                        <label for="country" data-i18n="form_country">Country</label>
+                        <input type="text" id="country" name="country" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp" data-i18n="form_whatsapp">WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+1 234 567 8900">
+                    </div>
+                    <div class="form-group">
+                        <label for="prefTime" data-i18n="form_time">Preferred Class Time</label>
+                        <input type="text" id="prefTime" name="prefTime" required placeholder="e.g. 5:00 PM EST">
+                    </div>
+
+                    <button type="submit" class="cta-btn-prominent full-width">
+                        <span data-i18n="form_submit">Submit Request</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container footer-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px;">
+            <div class="footer-info">
+                <img src="DarulTaleemQuranAcademy Logo.png" alt="Footer Logo" class="footer-logo"
+                    style="height: 60px; margin-bottom: 25px;">
+                <p data-i18n="footer_about">Dedicated to excellence in Quranic education for the next generation of
+                    Muslims globally.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="footer_links">Quick Links</h4>
+                <ul style="list-style: none; padding-top: 20px;">
+                    <li><a href="index.html"
+                            style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Home</a>
+                    </li>
+                    <li><a href="curriculum.html"
+                            style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Curriculum</a>
+                    </li>
+                    <li><a href="https://www.facebook.com" style="color: white; text-decoration: none;">Facebook</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4 data-i18n="footer_contact_title">Contact Us</h4>
+                <p data-i18n="footer_contact_desc" style="padding-top: 20px;">Global online classes for all time zones.
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom"
+            style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 80px; padding-top: 40px; font-size: 0.9rem; opacity: 0.7;">
+            <p data-i18n="footer_rights">© 2026 Darul Taleem Quran Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

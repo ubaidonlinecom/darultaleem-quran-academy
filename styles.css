@@ -71,10 +71,10 @@ body::before {
 
 /* Header & Nav - Glassmorphism Floating */
 header {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 1.2rem 0;
     position: fixed;
     width: calc(100% - 40px);
     top: 20px;
@@ -82,9 +82,15 @@ header {
     right: 20px;
     border-radius: var(--radius-lg);
     z-index: 1000;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     transition: var(--transition);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 nav {
@@ -669,13 +675,25 @@ nav {
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Staggered Children for those with reveal-stagger class */
+.reveal-stagger>* {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reveal-stagger.active>* {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .tab-btn.active {
@@ -901,9 +919,16 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .curriculum-cta {
+        margin-top: 20px;
+        margin-bottom: 60px;
+        /* Greatly reduced from 120px for mobile */
+    }
+
     .cta-banner {
-        padding: 60px 20px;
-        border-radius: 40px;
+        padding: 40px 20px;
+        /* Reduced from 60px for tighter fit */
+        border-radius: 30px;
     }
 
     .cta-banner h2 {
@@ -1092,17 +1117,21 @@ nav {
 
     .timeline-item {
         display: flex;
-        align-items: flex-start;
-        text-align: left;
-        gap: 30px;
+        flex-direction: column;
+        /* Stack vertically to avoid the table-like look */
+        align-items: center;
+        /* Center everything on mobile */
+        text-align: center;
+        gap: 15px;
+        position: relative;
     }
 
     .timeline-point {
         flex-shrink: 0;
-        margin: 0;
-        width: 65px;
-        height: 65px;
-        font-size: 1.5rem;
+        margin: 0 auto;
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem;
     }
 
     .step-label {
@@ -1113,13 +1142,8 @@ nav {
     }
 
     .timeline-item::after {
-        content: '';
-        position: absolute;
-        top: 65px;
-        left: 32px;
-        width: 2px;
-        height: calc(100% + 15px);
-        background: rgba(13, 148, 136, 0.15);
+        display: none;
+        /* Remove connecting lines on mobile where they look messy */
     }
 
     .timeline-item:last-child::after {
@@ -1663,7 +1687,8 @@ footer::before {
 
     /* Global Spacing & Typography */
     section {
-        padding: 60px 0;
+        padding: 40px 0;
+        /* Reduced padding for cleaner look on mobile */
     }
 
     .section-header {
@@ -1789,22 +1814,35 @@ footer::before {
     }
 
     .faq-item {
-        padding: 25px;
+        padding: 20px;
     }
 
-    /* Footer */
+    /* Footer - Redesigned for better categorization */
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        /* Split links into two columns */
+        gap: 30px;
+        text-align: left;
+    }
+
+    .footer-info {
+        grid-column: span 2;
+        /* Full width for logo/info at top */
         text-align: center;
-        gap: 40px;
+        margin-bottom: 10px;
     }
 
     .footer-info p {
         margin: 0 auto;
     }
 
+    .footer-col h4 {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
     .contact-item {
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .footer-socials {

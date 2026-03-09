@@ -633,8 +633,12 @@ function switchLanguage(lang) {
     // Update Content
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
+        if (translations[lang] && translations[lang][key]) {
             element.innerText = translations[lang][key];
+            // Clear current typewriter text so for the typewriter logic it can be refreshed
+            if (element.classList.contains('hero-subtitle')) {
+                element.removeAttribute('data-text-actual');
+            }
         }
     });
 
@@ -653,6 +657,42 @@ function initLanguageSwitcher() {
     // Check for saved language or default to English
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
     switchLanguage(savedLang);
+
+    // Start typewriter after a short delay
+    setTimeout(initTypewriter, 1000);
+}
+
+let typewriterTimeout;
+function initTypewriter() {
+    clearTimeout(typewriterTimeout);
+    const el = document.querySelector('.hero-subtitle');
+    if (!el) return;
+
+    // Ensure it's not reveal'd simultaneously by other logic
+    el.classList.remove('reveal');
+    el.classList.add('active');
+
+    // Get text that was already injected by switchLanguage
+    const fullText = el.getAttribute('data-text-actual') || el.innerText;
+    // Save it if not saved
+    if (!el.getAttribute('data-text-actual')) {
+        el.setAttribute('data-text-actual', fullText);
+    }
+
+    el.innerText = '';
+    el.style.visibility = 'visible';
+
+    let i = 0;
+    const speed = 25;
+
+    function type() {
+        if (i < fullText.length) {
+            el.innerHTML += fullText.charAt(i);
+            i++;
+            typewriterTimeout = setTimeout(type, speed);
+        }
+    }
+    type();
 }
 
 // Reveal Animations on Scroll
@@ -662,15 +702,26 @@ const reveal = () => {
         const windowHeight = window.innerHeight;
         const elementTop = element.getBoundingClientRect().top;
         // Trigger earlier on mobile for better UX
-        const elementVisible = window.innerWidth < 768 ? 80 : 150;
+        const elementVisible = window.innerWidth < 768 ? 60 : 150;
 
         if (elementTop < windowHeight - elementVisible) {
             element.classList.add('active');
+
+            // IF it's a grid/container with staggered children
+            if (element.classList.contains('reveal-stagger')) {
+                const children = element.children;
+                Array.from(children).forEach((child, index) => {
+                    child.style.transitionDelay = `${(index + 1) * 0.1}s`;
+                    child.classList.add('active');
+                });
+            }
         }
     });
 };
 
 window.addEventListener('scroll', reveal);
+// Trigger on load too
+window.addEventListener('DOMContentLoaded', reveal);
 
 // Mobile Menu Toggle
 const menuBtn = document.getElementById('mobile-menu-btn');

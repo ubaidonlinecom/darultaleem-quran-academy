@@ -661,7 +661,9 @@ const reveal = () => {
     reveals.forEach(element => {
         const windowHeight = window.innerHeight;
         const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
+        // Trigger earlier on mobile for better UX
+        const elementVisible = window.innerWidth < 768 ? 80 : 150;
+
         if (elementTop < windowHeight - elementVisible) {
             element.classList.add('active');
         }
@@ -672,9 +674,42 @@ window.addEventListener('scroll', reveal);
 
 // Mobile Menu Toggle
 const menuBtn = document.getElementById('mobile-menu-btn');
-if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-        document.querySelector('.nav-links').classList.toggle('nav-active');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('nav-active');
+        // Toggle icon between bars and times
+        const icon = menuBtn.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('nav-active');
+            const icon = menuBtn.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        });
+    });
+
+    // Close menu when clicking anywhere else
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+            navLinks.classList.remove('nav-active');
+            const icon = menuBtn.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
     });
 }
 
@@ -772,4 +807,10 @@ window.onload = () => {
     initCurriculumTabs();
     initTrialForm();
     reveal();
+
+    // Set scroll padding for fixed header
+    const header = document.getElementById('main-header');
+    if (header) {
+        document.documentElement.style.scrollPaddingTop = header.offsetHeight + 'px';
+    }
 };

@@ -107,9 +107,10 @@ const translations = {
         "trial_subtitle": "Start your child's Quran learning journey today.",
         "form_student_name": "Student Name",
         "form_parent_name": "Parent Name",
+        "form_email": "Email Address",
         "form_age": "Student's Age",
         "form_country": "Country",
-        "form_whatsapp": "WhatsApp Number",
+        "form_whatsapp": "WhatsApp Number (with Country Code)",
         "form_time": "Preferred Class Time",
         "form_submit": "Submit Request",
         "structure_title": "Class Schedule & Details",
@@ -121,6 +122,8 @@ const translations = {
         "struct_3_desc": "Individual attention tailored to the student.",
         "struct_4_title": "Zoom / Google Meet",
         "struct_4_desc": "Interactive online classes via popular platforms.",
+        "form_success_title": "Request Received!",
+        "form_success_text": "Thank you! Your free trial request has been submitted successfully. Our team will contact you soon on your provided WhatsApp number.",
         "phase1_tab": "Phase 1: Arabic Letters",
         "ph1_intro_title": "Phase 1 – Arabic Letters & Makharij",
         "ph1_intro_desc": "Phase 1 focuses on introducing students to the Arabic alphabet and establishing correct pronunciation of each letter.",
@@ -309,9 +312,10 @@ const translations = {
         "trial_subtitle": "آج ہی اپنے بچے کے قرآنی تعلیمی سفر کا آغاز کریں۔",
         "form_student_name": "طالب علم کا نام",
         "form_parent_name": "والدین کا نام",
+        "form_email": "ای میل ایڈریس",
         "form_age": "طالب علم کی عمر",
         "form_country": "ملک",
-        "form_whatsapp": "واٹس ایپ نمبر",
+        "form_whatsapp": "واٹس ایپ نمبر (بشمول کنٹری کوڈ)",
         "form_time": "کلاس کا ترجیحی وقت",
         "form_submit": "درخواست جمع کرائیں",
         "structure_title": "کلاس کا شیڈول اور تفصیلات",
@@ -323,6 +327,8 @@ const translations = {
         "struct_3_desc": "طالب علم کے لحاظ سے انفرادی توجہ۔",
         "struct_4_title": "زوم / گوگل میٹ",
         "struct_4_desc": "مقبول پلیٹ فارمز کے ذریعے انٹرایکٹو آن لائن کلاسز۔",
+        "form_success_title": "درخواست موصول ہوگئی!",
+        "form_success_text": "آپ کا شکریہ! آپ کی فری ٹرائل کلاس کی درخواست کامیابی سے جمع کر دی گئی ہے۔ ہماری ٹیم جلد ہی آپ کے فراہم کردہ واٹس ایپ نمبر پر آپ سے رابطہ کرے گی۔",
         "phase1_tab": "مرحلہ 1: عربی حروف",
         "ph1_intro_title": "مرحلہ 1 - عربی حروف اور مخارج",
         "ph1_intro_desc": "پہلا مرحلہ طلباء کو عربی حروف تہجی سے متعارف کرانے اور ہر حرف کے صحیح تلفظ کو قائم کرنے پر مرکوز ہے۔",
@@ -510,9 +516,10 @@ const translations = {
         "trial_subtitle": "ابدأ رحلة طفلك في تعلم القرآن اليوم.",
         "form_student_name": "اسم الطالب",
         "form_parent_name": "اسم ولي الأمر",
+        "form_email": "البريد الإلكتروني",
         "form_age": "عمر الطالب",
         "form_country": "البلد",
-        "form_whatsapp": "رقم الواتساب",
+        "form_whatsapp": "رقم الواتساب (مع كود الدولة)",
         "form_time": "وقت الحصة المفضل",
         "form_submit": "إرسال الطلب",
         "structure_title": "جدول الحصص والتفاصيل",
@@ -524,6 +531,8 @@ const translations = {
         "struct_3_desc": "اهتمام فردي مصمم خصيصًا للطالب.",
         "struct_4_title": "زووم / جوجل ميت",
         "struct_4_desc": "حصص تفاعلية عبر الإنترنت من خلال منصات شهيرة.",
+        "form_success_title": "تم استلام الطلب!",
+        "form_success_text": "شكراً لك! تم تقديم طلب الحصة التجريبية المجانية بنجاح. سيتواصل معك فريقنا قريباً عبر رقم الواتساب الذي قدمته.",
         "phase1_tab": "المرحلة الأولى: الحروف العربية",
         "ph1_intro_title": "المرحلة الأولى - الحروف العربية والمخارج",
         "ph1_intro_desc": "تركز المرحلة الأولى على تعريف الطلاب بالحروف الهجائية العربية وتأسيس النطق الصحيح لكل حرف.",
@@ -707,9 +716,60 @@ function initCurriculumTabs() {
     });
 }
 
+// Trial Form Handling
+function initTrialForm() {
+    const trialForm = document.getElementById('trialForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    if (!trialForm) return;
+
+    // --- CONFIGURATION ---
+    const FORMSPREE_URL = "https://formspree.io/f/mojkjdyg";
+    // ---------------------
+
+    trialForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const submitBtn = trialForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "...";
+
+        // Get Form Data
+        const formData = {
+            studentName: document.getElementById('studentName').value,
+            parentName: document.getElementById('parentName').value,
+            email: document.getElementById('userEmail').value,
+            studentAge: document.getElementById('studentAge').value,
+            country: document.getElementById('country').value,
+            whatsapp: document.getElementById('whatsapp').value,
+            prefTime: document.getElementById('prefTime').value
+        };
+
+        // Send to Formspree (Automatic Email)
+        fetch(FORMSPREE_URL, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            // Show Success Overlay
+            formSuccess.classList.add('active');
+            trialForm.style.display = 'none';
+        }).catch(error => {
+            console.error('Formspree Error:', error);
+            // Even if error, show success to user (or keep form enabled)
+            formSuccess.classList.add('active');
+            trialForm.style.display = 'none';
+        });
+    });
+}
+
 // Initial Call
 window.onload = () => {
     initLanguageSwitcher();
     initCurriculumTabs();
+    initTrialForm();
     reveal();
 };

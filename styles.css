@@ -48,6 +48,10 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 /* Unique Background Pattern */
 body::before {
     content: '';
@@ -921,8 +925,9 @@ nav {
 @media (max-width: 768px) {
     .curriculum-cta {
         margin-top: 20px;
-        margin-bottom: 60px;
-        /* Greatly reduced from 120px for mobile */
+        margin-bottom: 0px;
+        padding-bottom: 10px;
+        /* Neutralize generic section padding */
     }
 
     .cta-banner {
@@ -1152,13 +1157,14 @@ nav {
 
     /* RTL Support for Mobile Timeline */
     [dir="rtl"] .timeline-item {
-        text-align: right;
-        flex-direction: row-reverse;
+        text-align: center;
+        /* Center align for consistency with LTR mobile */
+        /* Removed flex-direction: row-reverse to maintain vertical stack */
     }
 
     [dir="rtl"] .timeline-item::after {
-        left: auto;
-        right: 32px;
+        display: none;
+        /* Keep lines hidden in RTL mobile as well */
     }
 }
 
@@ -1716,6 +1722,13 @@ footer::before {
         border-radius: 0;
         padding: 0.8rem 0;
         border-bottom: 1px solid rgba(13, 148, 136, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+        /* Solidify background so it doesn't clash with content */
+    }
+
+    .header-right {
+        gap: 8px;
+        /* Reduce gap so menu and lang switcher fit perfectly */
     }
 
     .mobile-menu-btn {
@@ -1727,7 +1740,8 @@ footer::before {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
+        width: 100%;
+        /* Fill entire screen for a premium modal feel */
         height: 100vh;
         background: var(--white);
         flex-direction: column;
@@ -1817,6 +1831,11 @@ footer::before {
         padding: 20px;
     }
 
+    footer {
+        padding-top: 50px;
+        /* Greatly reduced top whitespace on mobile */
+    }
+
     /* Footer - Redesigned for better categorization */
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1830,6 +1849,14 @@ footer::before {
         /* Full width for logo/info at top */
         text-align: center;
         margin-bottom: 10px;
+    }
+
+    .footer-col:last-child {
+        grid-column: span 2;
+        /* Full width for Contact Us to prevent horizontal overflow from long email */
+        word-wrap: break-word;
+        word-break: break-all;
+        /* Force long emails to wrap and stop screen stretch */
     }
 
     .footer-info p {

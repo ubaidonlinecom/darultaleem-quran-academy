@@ -954,96 +954,176 @@ nav {
     margin: 0 auto;
 }
 
-.process-section {
-    margin-bottom: 120px;
-}
-
-.process-visual-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-}
-
-.process-step-card {
-    background: white;
-    padding: 60px;
-    border-radius: 50px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0, 77, 64, 0.05);
+/* --- PREMIUM TIMELINE PRESENTATION (HOW IT WORKS) --- */
+.timeline-section {
+    padding: 80px 0;
+    background: radial-gradient(circle at top right, rgba(13, 148, 136, 0.03), transparent),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.03), transparent);
     position: relative;
-    transition: var(--transition);
-    border-bottom: 8px solid var(--accent-mint);
     overflow: hidden;
 }
 
-.process-step-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 30px 60px rgba(0, 77, 64, 0.12);
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 20px 0;
 }
 
-.process-step-card.alternate {
-    border-bottom-color: var(--secondary-color);
+/* Connecting Line - Desktop */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 55px;
+    /* Aligned with points */
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: linear-gradient(90deg,
+            rgba(13, 148, 136, 0.1) 0%,
+            rgba(13, 148, 136, 0.4) 50%,
+            rgba(13, 148, 136, 0.1) 100%);
+    border-radius: 5px;
+    z-index: 1;
 }
 
-.step-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 35px;
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    position: relative;
+    z-index: 2;
 }
 
-.step-num {
-    font-size: 5rem;
-    font-weight: 900;
-    color: var(--primary-color);
-    opacity: 0.08;
-    line-height: 1;
-    font-family: 'Outfit', sans-serif;
+.timeline-item {
+    text-align: center;
+    position: relative;
+    padding: 0 10px;
+    transition: var(--transition);
 }
 
-.step-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--bg-mint-light);
-    border-radius: 30px;
+.timeline-point {
+    width: 75px;
+    height: 75px;
+    background: var(--white);
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    margin: 0 auto 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.process-step-card h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    box-shadow: 0 12px 30px rgba(13, 148, 136, 0.15);
+    position: relative;
+    z-index: 3;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.timeline-item:hover .timeline-point {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 15px 40px rgba(13, 148, 136, 0.25);
+}
+
+.timeline-item:nth-child(even) .timeline-point {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 12px 30px rgba(245, 158, 11, 0.1);
+}
+
+.timeline-item:nth-child(even):hover .timeline-point {
+    background: var(--secondary-color);
+    color: var(--white);
+    box-shadow: 0 15px 40px rgba(245, 158, 11, 0.2);
+}
+
+.step-label {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 148, 136, 0.08);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.85rem;
     font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.process-step-card p {
-    font-size: 1.25rem;
+.timeline-item:nth-child(even) .step-label {
+    background: rgba(245, 158, 11, 0.08);
+    color: var(--secondary-color);
+}
+
+.timeline-content {
+    padding: 0 15px;
+}
+
+.timeline-content h3 {
+    font-size: 1.35rem;
     color: var(--text-dark);
-    line-height: 1.8;
-    opacity: 0.8;
+    margin-bottom: 15px;
+    font-weight: 800;
+    line-height: 1.3;
 }
 
-@media (max-width: 900px) {
-    .process-visual-grid {
+.timeline-content p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* Responsive Timeline */
+@media (max-width: 1024px) {
+    .timeline-container::before {
+        display: none;
+    }
+
+    .timeline-grid {
         grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
+        gap: 60px;
     }
 
-    .how-hero h1 {
-        font-size: 2.5rem;
+    .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        gap: 30px;
     }
 
-    .how-hero {
-        padding: 60px 20px;
-        border-radius: 0 0 50px 50px;
+    .timeline-point {
+        flex-shrink: 0;
+        margin: 0;
+        width: 65px;
+        height: 65px;
+        font-size: 1.5rem;
     }
 
-    .process-step-card {
-        padding: 40px;
-        border-radius: 40px;
+    .step-label {
+        position: static;
+        transform: none;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        top: 65px;
+        left: 32px;
+        width: 2px;
+        height: calc(100% + 15px);
+        background: rgba(13, 148, 136, 0.15);
+    }
+
+    .timeline-item:last-child::after {
+        display: none;
     }
 }
 
@@ -1235,19 +1315,30 @@ nav {
     margin: 0 auto;
 }
 
-/* Homepage Redesign Styling (Premium Royal Theme) */
-.why-us-section {
-    padding: 120px 0;
+/* Section Backgrounds & Spacing */
+section {
+    padding: 80px 0;
     position: relative;
     z-index: 2;
-    background: linear-gradient(180deg, var(--white) 0%, var(--bg-light) 50%, var(--white) 100%);
 }
 
-.how-home-section,
+.section-white {
+    background-color: var(--white);
+}
+
+.section-soft {
+    background-color: var(--bg-light);
+    border-top: 1px solid rgba(13, 148, 136, 0.05);
+    border-bottom: 1px solid rgba(13, 148, 136, 0.05);
+}
+
+/* Homepage Redesign Styling (Premium Royal Theme) */
+.why-us-section {
+    padding: 80px 0;
+}
+
 .faq-section {
-    padding: 100px 0;
-    position: relative;
-    z-index: 2;
+    padding: 80px 0;
 }
 
 /* Why Us Grid - Glassmorphism & Staggered */
@@ -1274,7 +1365,7 @@ nav {
 
 /* Stagger every even card */
 .why-card:nth-child(even) {
-    transform: translateY(40px);
+    transform: translateY(20px);
 }
 
 .why-card::after {
@@ -1349,96 +1440,6 @@ nav {
     color: var(--text-muted);
     font-size: 1.1rem;
     line-height: 1.6;
-}
-
-/* How It Works (Home) - Clean Bright Version */
-.how-home-section {
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    padding: 120px 40px;
-    margin: 80px auto;
-    color: var(--text-dark);
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(13, 148, 136, 0.1);
-}
-
-.how-home-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-}
-
-.how-home-section .section-header h2 {
-    color: var(--primary-color);
-}
-
-.how-home-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.home-step-card {
-    background: var(--bg-light);
-    padding: 60px 40px;
-    border-radius: var(--radius-lg);
-    position: relative;
-    box-shadow: var(--shadow-sm);
-    text-align: left;
-    border: 1px solid rgba(13, 148, 136, 0.1);
-    border-left: 4px solid var(--primary-color);
-    transition: var(--transition);
-}
-
-.home-step-card.alternate {
-    border-left-color: var(--secondary-color);
-}
-
-.home-step-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
-}
-
-.home-step-num {
-    font-size: 6rem;
-    font-weight: 900;
-    color: var(--primary-color);
-    opacity: 0.1;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    left: auto;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    line-height: 1;
-}
-
-[dir="rtl"] .home-step-num {
-    right: auto;
-    left: 20px;
-}
-
-.home-step-card h3 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    margin-top: 10px;
-    font-weight: 800;
-}
-
-.home-step-card p {
-    font-size: 1.15rem;
-    color: var(--text-dark);
-    line-height: 1.7;
 }
 
 /* FAQ Section */

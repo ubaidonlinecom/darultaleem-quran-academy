@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="how-it-works-page">
@@ -42,58 +43,69 @@
                 learning journey with confidence.</p>
         </section>
 
-        <section class="process-section reveal">
-            <div class="process-visual-grid">
-                <!-- Step 1 -->
-                <div class="process-step-card reveal">
-                    <div class="step-header">
-                        <span class="step-num">01</span>
-                        <div class="step-icon">📅</div>
-                    </div>
-                    <div class="step-body">
-                        <h2 data-i18n="step1_title">Step 1 – Free Trial Class</h2>
-                        <p data-i18n="step1_desc">Parents book a free trial class where the teacher meets the student
-                            and understands their current level.</p>
+        <section class="timeline-section reveal">
+            <div class="container">
+                <div class="timeline-container">
+                    <div class="timeline-grid">
+                        <!-- Step 1 -->
+                        <div class="timeline-item reveal">
+                            <span class="step-label" data-i18n="step1_label">Step 1</span>
+                            <div class="timeline-point">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3 data-i18n="step1_title">Book Free Trial Class</h3>
+                                <p data-i18n="step1_desc">Parents schedule a free trial class for their child.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="timeline-item reveal">
+                            <span class="step-label" data-i18n="step2_label">Step 2</span>
+                            <div class="timeline-point">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3 data-i18n="step2_title">Student Assessment</h3>
+                                <p data-i18n="step2_desc">The teacher evaluates the child’s current level,
+                                    pronunciation, and reading ability.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="timeline-item reveal">
+                            <span class="step-label" data-i18n="step3_label">Step 3</span>
+                            <div class="timeline-point">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3 data-i18n="step3_title">Personalized Learning Plan</h3>
+                                <p data-i18n="step3_desc">A customized learning path is created according to the
+                                    student’s level and pace.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="timeline-item reveal">
+                            <span class="step-label" data-i18n="step4_label">Step 4</span>
+                            <div class="timeline-point">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3 data-i18n="step4_title">Start Regular Quran Classes</h3>
+                                <p data-i18n="step4_desc">The student begins structured one-to-one Quran learning
+                                    classes.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="process-step-card reveal alternate">
-                    <div class="step-header">
-                        <span class="step-num">02</span>
-                        <div class="step-icon">🔍</div>
-                    </div>
-                    <div class="step-body">
-                        <h2 data-i18n="step2_title">Step 2 – Student Assessment</h2>
-                        <p data-i18n="step2_desc">During the trial class, the teacher evaluates the student’s reading
-                            ability, pronunciation, and familiarity with Arabic letters.</p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="process-step-card reveal">
-                    <div class="step-header">
-                        <span class="step-num">03</span>
-                        <div class="step-icon">✍️</div>
-                    </div>
-                    <div class="step-body">
-                        <h2 data-i18n="step3_title">Step 3 – Personalized Learning Plan</h2>
-                        <p data-i18n="step3_desc">Based on the assessment, a personalized learning path is designed
-                            according to the student’s level and pace.</p>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="process-step-card reveal alternate">
-                    <div class="step-header">
-                        <span class="step-num">04</span>
-                        <div class="step-icon">🎓</div>
-                    </div>
-                    <div class="step-body">
-                        <h2 data-i18n="step4_title">Step 4 – Regular Classes Begin</h2>
-                        <p data-i18n="step4_desc">Students start structured one-to-one classes following the Noorani
-                            Qaida Personalized Program and gradually progress toward Quran reading.</p>
-                    </div>
+                <!-- Subtle Bottom CTA -->
+                <div style="text-align: center; margin-top: 80px;">
+                    <a href="trial.html" class="btn-primary"
+                        style="padding: 18px 45px; font-size: 1.1rem; box-shadow: var(--shadow-md);">
+                        <span data-i18n="how_cta_btn">Book Free Trial Class</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -112,38 +124,86 @@
         </section>
     </main>
 
-    <footer id="contact">
-        <div class="container footer-grid"
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px;">
-            <div class="footer-info">
-                <img src="DarulTaleemQuranAcademy Logo.png" alt="Footer Logo" class="footer-logo"
-                    style="height: 60px; margin-bottom: 25px;">
-                <p data-i18n="footer_about">Dedicated to excellence in Quranic education for the next generation of
-                    Muslims globally.</p>
-            </div>
-            <div class="footer-links">
-                <h4 data-i18n="footer_links">Quick Links</h4>
-                <ul style="list-style: none; padding-top: 20px;">
-                    <li><a href="index.html"
-                            style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Home</a>
-                    </li>
-                    <li><a href="curriculum.html"
-                            style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Curriculum</a>
-                    </li>
-                    <li><a href="https://www.facebook.com" style="color: white; text-decoration: none;">Facebook</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4 data-i18n="footer_contact_title">Contact Us</h4>
-                <p data-i18n="footer_contact_desc" style="padding-top: 20px;">Global online classes for all time zones.
-                </p>
-                <a href="#" class="btn-primary" style="margin-top: 25px; display: inline-block;">Enroll Now</a>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Info Column -->
+                <div class="footer-col footer-info">
+                    <div class="footer-logo-container">
+                        <img src="DarulTaleemQuranAcademy Logo.png" alt="Darul Taleem Quran Academy"
+                            class="footer-logo">
+                    </div>
+                    <p data-i18n="footer_about">Dedicated to excellence in Quranic education for the next generation of
+                        Muslims globally. We provide structured online classes tailored to your child's pace.</p>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-col">
+                    <h4 data-i18n="footer_links">Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html#hero" data-i18n="nav_home">Home</a></li>
+                        <li><a href="index.html#focus" data-i18n="nav_focus">Our Focus</a></li>
+                        <li><a href="curriculum.html" data-i18n="nav_curriculum">Curriculum</a></li>
+                        <li><a href="how-it-works.html" data-i18n="nav_how_it_works">How it Works</a></li>
+                        <li><a href="index.html#why-us" data-i18n="nav_why">Why Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Column -->
+                <div class="footer-col">
+                    <h4 data-i18n="footer_support">Support</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="trial.html" data-i18n="nav_enroll">Enroll Now</a></li>
+                        <li><a href="trial.html" data-i18n="btn_trial">Book Free Trial</a></li>
+                        <li><a href="#" data-i18n="privacy_policy">Privacy Policy</a></li>
+                        <li><a href="#" data-i18n="terms_service">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-col">
+                    <h4 data-i18n="footer_contact_title">Contact Us</h4>
+                    <ul class="contact-info-list">
+                        <li>
+                            <a href="mailto:darultaleemonlinequranacademy@gmail.com" class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>darultaleemonlinequranacademy@gmail.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+923014262427" class="contact-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>+92 301 4262427</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://darultaleem-quran-academy.vercel.app/" class="contact-item"
+                                target="_blank">
+                                <i class="fas fa-globe"></i>
+                                <span>darultaleem-quran-academy.vercel.app</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="footer-socials">
+                        <a href="https://wa.me/923014262427" class="social-icon wa" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://web.facebook.com/darultaleemquranacademy" class="social-icon fb"
+                            target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom"
-            style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 80px; padding-top: 40px; font-size: 0.9rem; opacity: 0.7;">
-            <p data-i18n="footer_rights">© 2026 Darul Taleem Quran Academy. All rights reserved.</p>
+
+        <div class="footer-bottom-bar">
+            <div class="container bottom-content">
+                <p data-i18n="footer_rights">© 2026 Darul Taleem Quran Academy. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <span style="opacity: 0.6;">Quranic Excellence Online</span>
+                </div>
+            </div>
         </div>
     </footer>
 
